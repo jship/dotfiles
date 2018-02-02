@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+[[ "${DEBUG}" == 'true' ]] && set -o xtrace
+
+ORIGINAL_TEXT="$1"
+if [ -z "$ORIGINAL_TEXT" ]
+then
+    echo "Failed to pass in ORIGINAL_TEXT!"
+    exit 1
+fi
+
+NEW_TEXT="$2"
+if [ -z "$NEW_TEXT" ]
+then
+    echo "Failed to pass in NEW_TEXT!"
+    exit 1
+fi
+
+git grep -l "$ORIGINAL_TEXT" | xargs sed -i '' -e "s/$ORIGINAL_TEXT/$NEW_TEXT/g"
