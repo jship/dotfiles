@@ -1,4 +1,4 @@
-export PATH="/Users/jason/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 . /usr/local/etc/profile.d/z.sh
 
