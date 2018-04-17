@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+PR_URL="$1"
+if [ -z "$PR_URL" ]
+then
+    echo "Failed to pass in PR URL!"
+    exit 1
+fi
+
+curl -sL $PR_URL.patch | git am
