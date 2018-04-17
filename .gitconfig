@@ -17,4 +17,4 @@
 [mergetool "bc3"]
   trustExitCode = true
 [core]
-  editor = /usr/bin/vim
+  editor = /usr/local/bin/nvim
