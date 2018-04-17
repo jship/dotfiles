@@ -2,6 +2,8 @@ export PATH="$HOME/.local/bin:$PATH"
 
 . /usr/local/etc/profile.d/z.sh
 
+eval "$(stack --bash-completion-script stack)"
+
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
