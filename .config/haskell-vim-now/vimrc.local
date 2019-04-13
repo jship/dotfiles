@@ -1,5 +1,8 @@
 let g:no_haskell_conceal = 1
 
+let vim_markdown_preview_github=1
+let vim_markdown_preview_browser='Google Chrome'
+
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
@@ -10,15 +13,15 @@ command! -bang -nargs=* Rg
 noremap <Leader>rg :Rg! 
 noremap <Leader>frg :Files<CR>
 
-:nmap <Space> :wa<CR>:call system("git-slides next")<CR>:e!<CR>
-:nmap <Backspace> :wa<CR>:call system("git-slides prev")<CR>:e!<CR>
-:nmap gsl :wa<CR>:call system("git-slides next")<CR>:e!<CR>
-:nmap gsh :wa<CR>:call system("git-slides prev")<CR>:e!<CR>
-:nmap gsL :call system("git-slides next -f")<CR>:e!<CR>
-:nmap gsH :call system("git-slides prev -f")<CR>:e!<CR>
-:nmap gss :wa<CR>:call system("git-slides save")<CR>:e!<CR>
-:nmap gsb :wa<CR>:call system("git-slides insert-before")<CR>:e!<CR>
-:nmap gsa :wa<CR>:call system("git-slides insert-after")<CR>:e!<CR>
-:nmap gst :wa<CR>:call system("git-slides transform")<CR>:e!<CR>
-:nmap gsd :wa<CR>:call system("git-slides delete")<CR>:e!<CR>
-:nmap gsr :!./%<CR>
+" :nmap <Space> :wa<CR>:call system("git-slides next")<CR>:e!<CR>
+" :nmap <Backspace> :wa<CR>:call system("git-slides prev")<CR>:e!<CR>
+" :nmap gsl :wa<CR>:call system("git-slides next")<CR>:e!<CR>
+" :nmap gsh :wa<CR>:call system("git-slides prev")<CR>:e!<CR>
+" :nmap gsL :call system("git-slides next -f")<CR>:e!<CR>
+" :nmap gsH :call system("git-slides prev -f")<CR>:e!<CR>
+" :nmap gss :wa<CR>:call system("git-slides save")<CR>:e!<CR>
+" :nmap gsb :wa<CR>:call system("git-slides insert-before")<CR>:e!<CR>
+" :nmap gsa :wa<CR>:call system("git-slides insert-after")<CR>:e!<CR>
+" :nmap gst :wa<CR>:call system("git-slides transform")<CR>:e!<CR>
+" :nmap gsd :wa<CR>:call system("git-slides delete")<CR>:e!<CR>
+" :nmap gsr :!./%<CR>
