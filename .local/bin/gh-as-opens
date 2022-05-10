@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+[[ "${DEBUG}" == 'true' ]] && set -o xtrace
+
+cat /dev/stdin | tr -s ' ' | awk '{printf "open %s\n", $1}'

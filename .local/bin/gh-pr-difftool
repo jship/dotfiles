@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+[[ "${DEBUG}" == 'true' ]] && set -o xtrace
+
+declare -r PR_IDENTIFIER="$1"
+if [ -z "$PR_IDENTIFIER" ]
+then
+    echo "Failed to pass in PR_IDENTIFIER!"
+    exit 1
+fi
+
+declare -r SCRIPT_NAME=$(basename $0)
+
+declare -r DIFF_FILE_DIR=$(mktemp -d)
+declare -r DIFF_FILE="${DIFF_FILE_DIR}/${SCRIPT_NAME}.diff"
+
+gh pr diff "${PR_IDENTIFIER}" > "${DIFF_FILE}"
+bcompare "${DIFF_FILE}"

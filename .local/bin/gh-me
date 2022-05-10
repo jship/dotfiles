@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+[[ "${DEBUG}" == 'true' ]] && set -o xtrace
+
+gh api -X GET search/issues -f q='involves:jship state:open' -q '.items[] | [.html_url, .title, .user.login] | join("\t")' \
+  | column -t -s $'\t'
