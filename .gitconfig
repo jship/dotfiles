@@ -18,3 +18,9 @@
   trustExitCode = true
 [core]
   editor = /usr/local/bin/nvim
+  excludesfile = ~/.gitignore.global
+[rerere]
+  enabled = true
+  autoupdate = true
+[push]
+  default = current

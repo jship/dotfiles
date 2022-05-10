@@ -1,6 +1,9 @@
 :set prompt "\x03BB> "
 :seti -Wno-type-defaults
+:seti -XBlockArguments
 :seti -XOverloadedStrings
+:seti -XDataKinds
 :seti -XTypeApplications
+:seti -XTypeOperators
 :set +s
 :set +t
