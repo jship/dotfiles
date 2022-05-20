@@ -1,11 +1,6 @@
 [user]
   name = Jason Shipman
-[includeIf "gitdir:~/"]
-  path = ~/.gitconfig-user-personal
-[includeIf "gitdir:~/git/personal/"]
-  path = ~/.gitconfig-user-personal
-[includeIf "gitdir:~/git/work/"]
-  path = ~/.gitconfig-user-work
+  email = jasonpshipman@gmail.com
 [alias]
   prnc = pull --rebase --no-commit
   rup = remote update --prune
@@ -16,16 +11,24 @@
   apply-pr = !git-apply-pr
   find-replace = !git-find-replace
 [diff]
-  tool = bc
+  #tool = bc3
+  colorMoved = default
 [merge]
-  tool = bc
-[mergetool "bc"]
+  #tool = bc3
+  conflictstyle = diff3
+[mergetool "bc3"]
   trustExitCode = true
 [core]
-  editor = nvim
-  excludesfile = ~/.gitignore.global
+  editor = /usr/bin/nvim
+  excludesfile = /home/jship/.gitignore_global
+  pager = delta
 [rerere]
   enabled = true
   autoupdate = true
 [push]
   default = current
+[delta]
+  navigate = true  # use n and N to move between diff sections
+  side-by-side = true
+[interactive]
+  diffFilter = delta --color-only

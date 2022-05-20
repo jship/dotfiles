@@ -4,6 +4,11 @@ let g:purescript_unicode_conceal_enable = 0
 let vim_markdown_preview_github=1
 let vim_markdown_preview_browser='Brave Browser'
 
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
 noremap <Leader>rg :Rg! 
 noremap <Leader>frg :Files<CR>
 noremap <Leader>grg :GFiles<CR>
@@ -163,3 +168,6 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " airline integration
 let g:airline#extensions#coc#enabled = 1
 " END CONFIG coc
+
+" WSL clipboard stuff
+set clipboard=unnamedplus
