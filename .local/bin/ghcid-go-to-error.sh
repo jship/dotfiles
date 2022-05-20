@@ -1,14 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# If you have vim in pane 0 and ghcid in pane 1, this will jump to the first error/warning
+set -o errexit
+set -o pipefail
+[[ "${DEBUG}" == 'true' ]] && set -o xtrace
 
-# v0.6.x message format
-#OP=`tmux capture-pane -p -t 1 | vims -s 'v/:\<enter>nnyVGp:%s/\\\\n//g\<enter>0f:d$0Ps) \<esc>0s+call\\\\ cursor(\<esc>f:r,'`
+declare op
+op=$(tmux capture-pane -p -t 1 | ghcid-file-parser | jq -r '"+call\\ cursor(\(.line),\(.char)) \(.file)"')
 
-# v0.7.x message format
-OP=`tmux capture-pane -p -t 1 | vims -s 'v/:\<enter>n/:\\\\|-\<enter>yVGp:%s/\\\\n//g\<enter>0f:d$0Ps) \<esc>0s+call\\\\ cursor(\<esc>f:r,'`
-
-tmux send-keys Escape
-tmux send-keys ":e $OP"
-tmux send-keys Enter
-tmux send-keys 'zz'
+if [ -n "${op}" ]; then
+  tmux send-keys Escape
+  tmux send-keys ":e ${op}"
+  tmux send-keys Enter
+  tmux send-keys 'zz'
+fi
