@@ -1,3 +1,57 @@
 #!/usr/bin/env bash
 
-GIT_COMMITTER_DATE="`date`" git commit --amend --date "`date`"
+declare -g opt_just_print='false'
+declare -g cur_date=''
+cur_date="$(date)"
+
+function usage() {
+  cat <<EOF
+git-reset-date
+
+USAGE
+  git-reset-date [OPTIONS]
+
+OPTIONS
+  -p           Just print command
+  -h           Show usage
+EOF
+}
+
+function parseArgs() {
+  local OPTARG
+  local OPTIND
+  local _opt
+
+  while getopts ph _opt; do
+    case "${_opt}" in
+      p)
+        opt_just_print='true';;
+      h)
+        usage
+        exit 0
+        ;;
+      \?)
+        usage >&2
+        exit 1
+        ;;
+    esac
+  done
+
+  shift $((OPTIND - 1))
+}
+
+function main() {
+  parseArgs "$@"
+
+  if [[ 'true' == "${opt_just_print}" ]]; then
+    cat <<EOF
+GIT_COMMITTER_DATE="${cur_date}" git commit --amend --date "${cur_date}"
+EOF
+  fi
+
+  if [[ 'false' == "${opt_just_print}" ]]; then
+    GIT_COMMITTER_DATE="${cur_date}" git commit --amend --date "${cur_date}"
+  fi
+}
+
+main "$@"
