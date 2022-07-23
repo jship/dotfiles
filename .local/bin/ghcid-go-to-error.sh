@@ -5,7 +5,7 @@ set -o pipefail
 [[ "${DEBUG}" == 'true' ]] && set -o xtrace
 
 declare op
-op=$(tmux capture-pane -p -t 1 | ghcid-file-parser | jq -r '"+call\\ cursor(\(.line),\(.char)) \(.file)"')
+op=$(tmux capture-pane -p -t 0 | ghcid-file-parser parse --stdin | jq -r '"+call\\ cursor(\(.line),\(.char)) \(.file)"')
 
 if [ -n "${op}" ]; then
   tmux send-keys Escape
