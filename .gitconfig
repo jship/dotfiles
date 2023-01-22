@@ -1,23 +1,28 @@
 [user]
   name = Jason Shipman
-  email = jasonpshipman@gmail.com
+[includeIf "gitdir:~/"]
+  path = ~/.gitconfig-user-personal
+[includeIf "gitdir:~/git/personal/"]
+  path = ~/.gitconfig-user-personal
+[includeIf "gitdir:~/git/work/"]
+  path = ~/.gitconfig-user-work
 [alias]
   prnc = pull --rebase --no-commit
   rup = remote update --prune
   mb = merge-base --all --fork-point
   graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
   rheads = !git-rheads
-  reset-date = !git-reset-date
+  reset-date = '!function f() { git-reset-date "$1" } && f'
   apply-pr = !git-apply-pr
   find-replace = !git-find-replace
 [diff]
-  tool = bc3
+  tool = bc
 [merge]
-  tool = bc3
-[mergetool "bc3"]
+  tool = bc
+[mergetool "bc"]
   trustExitCode = true
 [core]
-  editor = /usr/local/bin/nvim
+  editor = nvim
   excludesfile = ~/.gitignore.global
 [rerere]
   enabled = true
