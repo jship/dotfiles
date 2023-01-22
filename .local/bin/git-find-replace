@@ -16,4 +16,5 @@ then
     exit 1
 fi
 
-git grep -l "$ORIGINAL_TEXT" | xargs sed -i '' -e "s/$ORIGINAL_TEXT/$NEW_TEXT/g"
+#git grep -l "$ORIGINAL_TEXT" | xargs sed -i '' -e "s/$ORIGINAL_TEXT/$NEW_TEXT/g"
+git grep -l "$ORIGINAL_TEXT" | xargs -t sed -i -e "s/$ORIGINAL_TEXT/$NEW_TEXT/g" # WSL

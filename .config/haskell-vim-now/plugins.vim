@@ -5,3 +5,4 @@ Plug 'LnL7/vim-nix'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'pbrisbin/vim-syntax-shakespeare'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'lepture/vim-jinja'
